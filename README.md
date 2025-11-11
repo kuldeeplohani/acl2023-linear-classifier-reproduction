@@ -1,22 +1,25 @@
-# ACL 2023 – Linear Classifier: An Often-Forgotten Baseline for Text Classification
+# ACL 2023 Paper Reproduction – *Linear Classifier: An Often-Forgotten Baseline for Text Classification*
 
-This repository reproduces and analyzes the results from the paper:
-> Lin, Yu-Chen; Chen, Si-An; Liu, Jie-Jyun; Lin, Chih-Jen.  
+### 📘 Overview
+
+This repository contains the **reproduction and analysis** of the ACL 2023 paper:  
+> **Lin, Yu-Chen; Chen, Si-An; Liu, Jie-Jyun; Lin, Chih-Jen. (2023)**  
 > *Linear Classifier: An Often-Forgotten Baseline for Text Classification.*  
-> Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL 2023).
+> *Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL 2023).*  
+> [https://aclanthology.org/2023.acl-short.160](https://aclanthology.org/2023.acl-short.160)
 
-## Overview
-This project compares traditional TF-IDF + Linear SVM models against BERT-based models for text classification on the LexGLUE benchmark.  
-It includes:
-- Complete code reproduction (linear + BERT)
-- Result comparisons
-- Analytical project report (NIT Patna, 2025)
+The goal of this project is to **reproduce the experiments**, understand the comparative performance of **linear models** and **transformer-based models (BERT)** for text classification, and analyze the **efficiency–accuracy trade-offs** in modern NLP.
 
-## Structure
-- `baseline.ipynb` – main notebook (linear model reproduction)
-- `report/` – final academic report (PDF and DOCX)
-- `data/` – LexGLUE dataset links
-- `results/` – reproduced metrics and logs
+---
+
+## 🧭 Project Objectives
+
+1. **Reproduce** the results of the ACL 2023 paper using the official code and datasets.  
+2. **Compare** the performance of linear models (TF-IDF + SVM/Logistic Regression) with BERT models.  
+3. **Analyze** computational efficiency, scalability, and interpretability.  
+4. **Modify** and experiment with hyperparameters or subsets to test robustness.  
+5. **Document** results and insights in a detailed academic report.
+
 
 ## Author
 **Kuldeep Lohani**  
