@@ -20,6 +20,6 @@ It includes:
 
 ## Author
 **Kuldeep Lohani**  
-MCA (Data Science and Informatics), NIT Patna  
+Masters(Data Science and Informatics), NIT Patna  
 Course: Machine Learning (MC460303)  
 Supervisor: Dr. Akshay Deepak
