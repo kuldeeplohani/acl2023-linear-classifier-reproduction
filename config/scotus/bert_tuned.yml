@@ -2,14 +2,14 @@
 data_dir: data_nn/scotus
 data_name: scotus
 min_vocab_freq: 1
-max_seq_length: 512
+max_seq_length: 256
 include_test_labels: true
 add_special_tokens: true
 
 # train
 seed: 1337
-epochs: 15
-batch_size: 8
+epochs: 2
+batch_size: 2
 optimizer: adamw
 learning_rate: 2e-05
 weight_decay: 0

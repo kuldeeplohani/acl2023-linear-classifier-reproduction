@@ -161,7 +161,7 @@ class TorchTrainer:
                     f'{self.config.val_metric} is not in `monitor_metrics`. Add {self.config.val_metric} to `monitor_metrics`.')
                 self.config.monitor_metrics += [self.config.val_metric]
 
-            self.model = init_model(model_name=self.config.model_name,
+            self.model = init_model(model_name=self.config.model_name,  
                                     network_config=dict(self.config.network_config),
                                     classes=classes,
                                     word_dict=word_dict,
@@ -180,7 +180,7 @@ class TorchTrainer:
                                     multi_class=self.config.multi_class,
                                     enable_ce_loss=self.config.enable_ce_loss,
                                     hierarchical=self.config.hierarchical
-                                   )
+                                   )                                                                        #MODEL DEFINED HERE
 
     def _get_dataset_loader(self, split, shuffle=False):
         """Get dataset loader.
@@ -215,7 +215,7 @@ class TorchTrainer:
         assert self.trainer is not None, "Please make sure the trainer is successfully initialized by `self._setup_trainer()`."
         if self.config.enable_transformer_trainer:
             # Training
-            train_result = self.trainer.train()
+            train_result = self.trainer.train()                                                                   
             metrics = train_result.metrics
             metrics['train_samples'] = len(self.train_dataset)
             self.trainer.save_model()
@@ -235,7 +235,7 @@ class TorchTrainer:
                                                     monitor=self.config.val_metric,
                                                     mode='max')]  # tentative hard code
             val_loader = self._get_dataset_loader(split='val')
-            self.trainer.fit(self.model, train_loader, val_loader)
+            self.trainer.fit(self.model, train_loader, val_loader)                                                      #TRAINING HAPPENS HERE
 
         # Set model to the best model. If the validation process is skipped during
         # training (i.e., val_size=0), the model is set to the last model.
@@ -260,12 +260,12 @@ class TorchTrainer:
         assert 'test' in self.datasets and self.trainer is not None
 
         if self.config.enable_transformer_trainer:
-            # Validation
+            # Validation                                                                        #VALIDATION
             metrics = self.trainer.evaluate(eval_dataset=self.val_dataset)
             metrics['val_samples'] = len(self.val_dataset)
             self.trainer.log_metrics('val', metrics)
             self.trainer.save_metrics('val', metrics)
-            # Testing
+            # Testing                                                                          
             predictions, labels, metrics = self.trainer.predict(self.test_dataset, metric_key_prefix='test')
             metrics['test_samples'] = len(self.test_dataset)
             self.trainer.log_metrics('test', metrics)
@@ -274,7 +274,7 @@ class TorchTrainer:
 
         logging.info(f'Testing on {split} set.')
         test_loader = self._get_dataset_loader(split=split)
-        metric_dict = self.trainer.test(self.model, dataloaders=test_loader)[0]
+        metric_dict = self.trainer.test(self.model, dataloaders=test_loader)[0]                                     #TESTING
 
         if self.config.save_k_predictions > 0:
             self._save_predictions(test_loader, self.config.predict_out_path)
@@ -288,7 +288,7 @@ class TorchTrainer:
             dataloader (torch.utils.data.DataLoader): Dataloader for the test or valid dataset.
             predict_out_path (str): Path to the an output file holding top k label results.
         """
-        batch_predictions = self.trainer.predict(self.model, dataloaders=dataloader)
+        batch_predictions = self.trainer.predict(self.model, dataloaders=dataloader)                           
         pred_labels = np.vstack([batch['top_k_pred']
                                 for batch in batch_predictions])
         pred_scores = np.vstack([batch['top_k_pred_scores']

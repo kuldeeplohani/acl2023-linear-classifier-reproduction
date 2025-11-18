@@ -231,7 +231,7 @@ from sklearn.metrics import f1_score
 from transformers import EvalPrediction
 def compute_metrics(p: EvalPrediction):
     logits = p.predictions[0] if isinstance(p.predictions, tuple) else p.predictions
-    preds = np.argmax(logits, axis=1)
+    preds = np.argmax(logits, axis=1)                                                                           #PREDICTS LOGITS
     macro_f1 = f1_score(y_true=p.label_ids, y_pred=preds, average='macro', zero_division=0)
     micro_f1 = f1_score(y_true=p.label_ids, y_pred=preds, average='micro', zero_division=0)
     return {'Macro-F1': macro_f1, 'Micro-F1': micro_f1}

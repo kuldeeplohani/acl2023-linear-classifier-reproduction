@@ -24,7 +24,7 @@ def linear_test(config, model, datasets):
 
     for i in range(ceil(num_instance / config.eval_batch_size)):
         slice = np.s_[i*config.eval_batch_size:(i+1)*config.eval_batch_size]
-        preds = linear.predict_values(model, datasets['test']['x'][slice])
+        preds = linear.predict_values(model, datasets['test']['x'][slice])                     #MODEL PREDICTION 
         target = datasets['test']['y'][slice].toarray()
         metrics.update(preds, target)
 
@@ -43,7 +43,7 @@ def linear_train(datasets, config):
                   'cost_sensitive': linear.train_cost_sensitive,
                   'cost_sensitive_micro': linear.train_cost_sensitive_micro}
     model = techniques[config.linear_technique](
-        datasets['train']['y'],
+        datasets['train']['y'],                                         #LINEAR MODELS ARE DEFINED
         datasets['train']['x'],
         config.liblinear_options,
     )
@@ -67,7 +67,7 @@ def linear_run(config):
             config.label_file,
             config.include_test_labels,
             config.remove_no_label_data)
-        model = linear_train(datasets, config)
+        model = linear_train(datasets, config)                                                #LINEAR MODEL TRAINING   
         linear.save_pipeline(config.checkpoint_dir, preprocessor, model)
 
     if os.path.exists(config.test_path):

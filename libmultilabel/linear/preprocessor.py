@@ -126,7 +126,7 @@ class Preprocessor:
         return dict(datasets)
 
     def _generate_tfidf(self, texts):
-        self.vectorizer = TfidfVectorizer()
+        self.vectorizer = TfidfVectorizer()                                            #TF-IDF Vectorization
         self.vectorizer.fit(texts)
 
     def _generate_label_mapping(self, labels, classes=None):
@@ -138,7 +138,7 @@ class Preprocessor:
 def read_libmultilabel_format(path: str) -> 'dict[str,list[str]]':
     data = pd.read_csv(path, sep='\t', header=None,
                        dtype=str,
-                       on_bad_lines='skip').fillna('')
+                       on_bad_lines='skip').fillna('')                            #THIS IS WHERE LABELS ARE SEPARATED
     if data.shape[1] == 2:
         data.columns = ['label', 'text']
         data = data.reset_index()

@@ -170,7 +170,7 @@ class MultiLabelModel(pl.LightningModule):
         Returns:
             dict: Top k label indexes and the prediction scores.
         """
-        _, pred_logits = self.shared_step(batch)
+        _, pred_logits = self.shared_step(batch)                                                        
         pred_scores = pred_logits.detach().cpu().numpy()
         k = self.save_k_predictions
         top_k_idx = argsort_top_k(pred_scores, k, axis=1)
